@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\NewsController;
+
 Route::get('/','FrontController@index');
 
 
@@ -33,8 +35,16 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home'],function(){
 
     // 最新消息管理
     Route::get('news', 'NewsController@index');
+
+    //新增與儲存功能
     Route::get('news/create', 'NewsController@create');
     Route::post('news/store', 'NewsController@store');
 
-    
+    //編輯與更新
+    Route::get('news/edit/{id}','NewsController@edit');
+    Route::post('news/update/{id}','NewsController@update');
+
+
+    Route::post('news/delete','NewsController@delete');
+
 });
