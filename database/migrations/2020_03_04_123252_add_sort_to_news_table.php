@@ -15,7 +15,7 @@ class AddSortToNewsTable extends Migration
     {
         Schema::table('news', function (Blueprint $table) {
             $table->integer('sort')->after('content')->default(0);
-            //
+            //測試使用
         });
     }
 
