@@ -7,31 +7,42 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $all_news = News::all();
-        return view('admin/news/index',compact('all_news'));
+        return view('admin/news/index', compact('all_news'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin/news/create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $news_data = $request->all();
+        // dd($news_data);
+        // 上傳檔案
+        // dd($request->file('img'));
+        $file_name = $request->file('img')->store('', 'public');
+        $news_data['img'] = $file_name;
+
         News::create($news_data)->save();
         return redirect('/home/news');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         // $news = News::where('id','=',$id)->first();
         $news = News::find($id);
 
-        return view('admin/news/edit',compact('news'));
+        return view('admin/news/edit', compact('news'));
     }
 
     // 更新最新消息
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
 
         // 第一種寫法
         // $news = News::find($id);
@@ -44,11 +55,11 @@ class NewsController extends Controller
         News::find($id)->update($request->all());
 
         return redirect('/home/news');
-
     }
 
     // 刪除最新消息的
-    public function delete(Request $request,$id){
+    public function delete(Request $request, $id)
+    {
         // dd($id);
         News::find($id)->delete();
 

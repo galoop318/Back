@@ -15,6 +15,7 @@
             <th>img</th>
             <th>title</th>
             <th>content</th>
+            <th>sort</th>
             <th></th>
 
         </tr>
@@ -24,12 +25,13 @@
         @foreach ($all_news as $item)
             <tr>
                 <td>
-                <img src={{$item->img}} alt="">
+                <img src="{{asset('/storage/'.$item->img)}}" alt="">
                 </td>
                 <td>{{$item->title}}</td>
                 <td>{{$item->content}}</td>
+                <td>{{$item->sort}}</td>
                 <td width="120px">
-                    <a href="/home/news/edit/{{$item->id}}" class="btn btn-success">修改</a>
+                    <a href="/home/news/edit/{{$item->id}}" class="btn btn-warning ">修改</a>
                     <button class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>
                     {{-- 建立隱藏的刪除表單-抓每一筆的ID-在執行刪除的動作 --}}
                     <form id="delete-form-{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST" style="display: none;">

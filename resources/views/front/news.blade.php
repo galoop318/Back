@@ -5,7 +5,7 @@
 
     <div class="container">
 
-        <div class="media-container-row">
+        <div class="media-container-row flex-wrap" style="margin-top:80px ">
 
             @foreach ($news_data as $item)
 

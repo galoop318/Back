@@ -19,6 +19,11 @@
         </div>
 
         <div class="form-group">
+            <label for="sort">sort</label>
+            <input type="text" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
+          </div>
+
+        <div class="form-group">
             <label for="content">Password</label>
             <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$news->content}}</textarea>
         </div>
