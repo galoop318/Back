@@ -46,4 +46,12 @@ class NewsController extends Controller
         return redirect('/home/news');
 
     }
+
+    // 刪除最新消息的
+    public function delete(Request $request,$id){
+        // dd($id);
+        News::find($id)->delete();
+
+        return redirect('/home/news');
+    }
 }

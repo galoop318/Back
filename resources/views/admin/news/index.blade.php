@@ -30,7 +30,11 @@
                 <td>{{$item->content}}</td>
                 <td width="120px">
                     <a href="/home/news/edit/{{$item->id}}" class="btn btn-success">修改</a>
-                    <button class="btn btn-danger">刪除</button>
+                    <button class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>
+                    {{-- 建立隱藏的刪除表單-抓每一筆的ID-在執行刪除的動作 --}}
+                    <form id="delete-form-{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </td>
 
             </tr>
@@ -54,6 +58,15 @@
     $(document).ready(function() {
         $('#example').DataTable();
     } );
+
+    // 刪除時會跳出視窗詢問
+    function show_confirm(id){
+        var r=confirm("你確定要刪除嗎!")
+        if (r==true){
+            document.getElementById(`delete-form-${id}`).submit();
+        }
+    }
+
     </script>
 
 @endsection
