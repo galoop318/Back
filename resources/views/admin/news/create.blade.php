@@ -9,9 +9,14 @@
     <form method="POST" action="/home/news/store" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-          <label for="img">Email address</label>
+          <label for="img">主要圖片上傳</label>
           <input type="file" class="form-control" id="img" name="img">
         </div>
+
+        <div class="form-group">
+            <label for="img">多張圖片上傳</label>
+            <input type="file" class="form-control" id="news_img" name="news_img[]" multiple >
+          </div>
 
         <div class="form-group">
           <label for="title">Email address</label>

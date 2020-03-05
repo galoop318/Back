@@ -9,8 +9,13 @@
     <form method="POST" action="/home/news/update/{{$news->id}}">
         @csrf
         <div class="form-group">
-          <label for="img">Email address</label>
-          <input type="text" class="form-control" id="img" name="img" value="{{$news->img}}">
+          <label for="img">現有圖片</label>
+          <img class="img-fluid" src="/storage/{{$news->img}}" alt="">
+        </div>
+
+        <div class="form-group">
+            <label for="title">重新上傳圖片</label>
+            <input type="file" class="form-control" id="img" name="img">
         </div>
 
         <div class="form-group">
@@ -20,7 +25,7 @@
 
         <div class="form-group">
             <label for="sort">sort</label>
-            <input type="text" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
+            <input type="number" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
           </div>
 
         <div class="form-group">

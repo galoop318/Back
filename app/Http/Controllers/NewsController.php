@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use App\News_img;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -21,13 +22,37 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $news_data = $request->all();
-        // dd($news_data);
-        // 上傳檔案
-        // dd($request->file('img'));
+
+        // 單檔上傳
+        // dd($request->all());
         $file_name = $request->file('img')->store('', 'public');
         $news_data['img'] = $file_name;
 
-        News::create($news_data)->save();
+        
+        $News_id = News::create($news_data);
+
+        $News_id->save();
+        //如果有上傳 執行下方
+        if ($request->hasFile('news_img')) {
+            // dd($request->file('news_img'));
+
+            $moreimgs = $request->file('news_img');
+            foreach ($moreimgs as $moreimg) {
+                //上傳圖片
+                $file_name = $moreimg->store('', 'public');
+
+                //新增資料進DB
+                $newsimg = new News_img;
+                $newsimg->news_id = $News_id['id'];
+                $newsimg->img_url = $file_name;
+                $newsimg->save();
+            }
+        }
+
+
+
+
+
         return redirect('/home/news');
     }
 
@@ -53,6 +78,9 @@ class NewsController extends Controller
 
         // 第二種寫法
         News::find($id)->update($request->all());
+
+
+        // 更新圖片的時候 要先找到舊的圖片 再丟回新的圖片
 
         return redirect('/home/news');
     }
