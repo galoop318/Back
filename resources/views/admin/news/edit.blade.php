@@ -6,11 +6,11 @@
 
 <div class="container">
     <h1>編輯最新消息</h1>
-    <form method="POST" action="/home/news/update/{{$news->id}}">
+    <form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
           <label for="img">現有圖片</label>
-          <img class="img-fluid" src="/storage/{{$news->img}}" alt="">
+          <img class="img-fluid" src="{{$news->img}}" alt="">
         </div>
 
         <div class="form-group">

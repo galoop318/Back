@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\News;
 use App\News_img;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
@@ -23,12 +24,18 @@ class NewsController extends Controller
     {
         $news_data = $request->all();
 
-        // 單檔上傳
+        // 傳統單檔上傳
         // dd($request->all());
-        $file_name = $request->file('img')->store('', 'public');
-        $news_data['img'] = $file_name;
+        //$file_name = $request->file('img')->store('', 'public');
+        //$news_data['img'] = $file_name;
 
-        
+        //暴力移檔
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $path = $this->fileUpload($file, 'news');
+            $news_data['img'] = $path;
+        }
+
         $News_id = News::create($news_data);
 
         $News_id->save();
@@ -48,10 +55,6 @@ class NewsController extends Controller
                 $newsimg->save();
             }
         }
-
-
-
-
 
         return redirect('/home/news');
     }
@@ -76,11 +79,23 @@ class NewsController extends Controller
         // $news->content = $request->content;
         // $news->save();
 
-        // 第二種寫法
-        News::find($id)->update($request->all());
 
+        $request_data = $request->all();
+        $item = News::find($id);
 
-        // 更新圖片的時候 要先找到舊的圖片 再丟回新的圖片
+        //if 有上傳新圖片，刪掉舊圖片，再上傳新圖片
+        if ($request->hasFile('img')) {
+            //刪除舊有圖片
+            $old_image = $item->img;
+            File::delete(public_path() . $old_image);
+            //上傳新圖片
+            $file = $request->file('img');
+            $path = $this->fileUpload($file, 'news');
+            $request_data['img'] = $path;
+        }
+
+        $item->update($request_data);
+
 
         return redirect('/home/news');
     }
@@ -89,8 +104,37 @@ class NewsController extends Controller
     public function delete(Request $request, $id)
     {
         // dd($id);
-        News::find($id)->delete();
+        $item = News::find($id);
+
+        $old_image = $item->img;
+        if (file_exists(public_path() . $old_image)) {
+            File::delete(public_path() . $old_image);
+        }
+
+        $item->delete();
 
         return redirect('/home/news');
+    }
+
+
+
+    private function fileUpload($file, $dir)
+    {
+        //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
+        if (!is_dir('upload/')) {
+            mkdir('upload/');
+        }
+        //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
+        if (!is_dir('upload/' . $dir)) {
+            mkdir('upload/' . $dir);
+        }
+        //取得檔案的副檔名
+        $extension = $file->getClientOriginalExtension();
+        //檔案名稱會被重新命名
+        $filename = strval(time() . md5(rand(100, 200))) . '.' . $extension;
+        //移動到指定路徑
+        move_uploaded_file($file, public_path() . '/upload/' . $dir . '/' . $filename);
+        //回傳 資料庫儲存用的路徑格式
+        return '/upload/' . $dir . '/' . $filename;
     }
 }

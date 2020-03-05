@@ -25,7 +25,7 @@
         @foreach ($all_news as $item)
             <tr>
                 <td>
-                <img width="100px" src="{{asset('/storage/'.$item->img)}}" alt="">
+                <img width="100px" src="{{$item->img}}" alt="">
                 </td>
                 <td>{{$item->title}}</td>
                 <td>{{$item->content}}</td>
