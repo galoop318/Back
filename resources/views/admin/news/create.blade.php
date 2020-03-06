@@ -1,5 +1,8 @@
 @extends('layouts/app')
 
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+@endsection
 
 
 @section('content')
@@ -9,23 +12,23 @@
     <form method="POST" action="/home/news/store" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-          <label for="img">主要圖片上傳</label>
-          <input type="file" class="form-control" id="img" name="img">
+            <label for="img">主要圖片上傳</label>
+            <input type="file" class="form-control" id="img" name="img">
         </div>
 
         <div class="form-group">
             <label for="img">多張圖片上傳</label>
-            <input type="file" class="form-control" id="news_img" name="news_img[]" multiple >
-          </div>
+            <input type="file" class="form-control" id="news_img" name="news_img[]" multiple>
+        </div>
 
         <div class="form-group">
-          <label for="title">Email address</label>
-          <input type="text" class="form-control" id="title" name="title">
+            <label for="title">Email address</label>
+            <input type="text" class="form-control" id="title" name="title">
         </div>
 
         <div class="form-group">
             <label for="content">Password</label>
-            <input type="text" class="form-control" id="content" name="content">
+            <textarea class="form-control" id="content" name="content"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -35,4 +38,16 @@
 
 @endsection
 
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+    $('#content').summernote({
+        minHeight: 300,
+    });
+
+    });
+</script>
+
+@endsection

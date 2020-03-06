@@ -10,7 +10,7 @@
             多張圖片：
 
             @foreach ($news->news_imgs as $news_img)
-                <img width="100" src="/storage/{{$news_img->img_url}}" alt="">
+                <img width="100" src="{{$news_img->img_url}}" alt="">
             @endforeach
 
         </div>

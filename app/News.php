@@ -13,6 +13,8 @@ class News extends Model
     ];
 
     public function news_imgs(){
-        return $this->hasMany('App\News_img');
+        //要先經過排序orderby再丟回newscontroller裡的edit function
+        return $this->hasMany('App\News_img')->orderby('sort','desc');
+
     }
 }

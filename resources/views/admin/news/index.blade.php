@@ -28,7 +28,7 @@
                 <img width="100px" src="{{$item->img}}" alt="">
                 </td>
                 <td>{{$item->title}}</td>
-                <td>{{$item->content}}</td>
+                <td>{!! $item->content !!}</td>
                 <td>{{$item->sort}}</td>
                 <td width="120px">
                     <a href="/home/news/edit/{{$item->id}}" class="btn btn-warning ">修改</a>
