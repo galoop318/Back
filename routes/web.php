@@ -19,6 +19,9 @@ Route::get('/','FrontController@index');
 Route::get('/news', 'FrontController@news'); //List Page
 Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 
+Route::get('/products', 'FrontController@products');
+Route::get('/products/{id}', 'FrontController@products_detail');
+
 Auth::routes();
 
 
@@ -50,4 +53,31 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home'],function(){
 
     Route::post('ajax_delete_news_imgs','NewsController@ajax_delete_news_imgs');
     Route::post('ajax_post_sort','NewsController@ajax_post_sort');
+
+    Route::post('ajax_upload_img','UploadImgController@ajax_upload_img');
+    Route::post('ajax_delete_img','UploadImgController@ajax_delete_img');
+
+
+    //產品管理
+    Route::get('products', 'ProductController@index');
+
+    Route::get('products/create', 'ProductController@create');
+    Route::post('products/store', 'ProductController@store'); 
+
+    Route::get('products/edit/{id}','ProductController@edit');
+    Route::post('products/update/{id}','ProductController@update');
+
+    Route::post('products/delete/{id}','ProductController@delete');
+
+
+    //產品類型管理
+    Route::get('productType', 'ProductTypeController@index');
+
+    Route::get('productType/create', 'ProductTypeController@create');
+    Route::post('productType/store', 'ProductTypeController@store');
+
+    Route::get('productType/edit/{id}','ProductTypeController@edit');
+    Route::post('productType/update/{id}','ProductTypeController@update');
+
+    Route::post('productType/delete/{id}','ProductTypeController@delete');
 });

@@ -22,4 +22,17 @@ class FrontController extends Controller
         // dd($item);
         return view('front/news_detail',compact('news'));
     }
+
+
+    public function products(){
+        $news_data = News::orderby('sort','desc')->get();
+        return view('front/products',compact('news_data'));
+    }
+
+    public function products_detail($id){ 
+
+        $news = News::find($id);
+        // dd($item);
+        return view('front/news_detail',compact('news'));
+    }
 }
