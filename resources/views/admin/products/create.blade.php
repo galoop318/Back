@@ -13,9 +13,26 @@
         @csrf
 
         <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="types_id">
+                @foreach ($types as $item)
+
+
+                    <option value="{{$item->id}}">{{$item->types}}</option>
+
+                @endforeach
+
+              {{-- <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option> --}}
+            </select>
+        </div>
+        {{-- <div class="form-group">
             <label for="types_id">types_id</label>
             <input type="text" class="form-control" id="types_id" name="types_id">
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <label for="img">主要圖片上傳</label>

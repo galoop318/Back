@@ -12,30 +12,31 @@
 
             </div>
             <!--Card-1-->
-
-            
-            <div class="card col-12 col-md-6 p-3 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="assets/images/product1.jpg" alt="Mobirise">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-5">
-                            Watch Star
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium dolores doloribus
-                            eligendi eum illo placeat quis repellendus sequi tempore!
-                        </p>
-                        <!--Btn-->
-                        <div class="mbr-section-btn align-left">
-                            <a href="https://mobirise.co" class="btn btn-warning-outline display-4">
-                                $ 790
-                            </a>
+            @foreach ($Products_data as $item)
+                <div class="card col-12 col-md-6 p-3 col-lg-4">
+                    <div class="card-wrapper">
+                        <div class="card-img">
+                            <img src="{{$item->img}}" alt="Mobirise">
+                        </div>
+                        <div class="card-box">
+                            <h4 class="card-title mbr-fonts-style display-5">
+                                {{$item->title}}
+                            </h4>
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                {{$item->content}}
+                            </p>
+                            <!--Btn-->
+                            <div class="mbr-section-btn align-left">
+                                <a href="https://mobirise.co" class="btn btn-warning-outline display-4">
+                                    $ 790
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
+
+
 
 
 

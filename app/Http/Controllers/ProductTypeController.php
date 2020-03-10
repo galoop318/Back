@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product_types;
+use App\Products;
 use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
@@ -29,6 +30,32 @@ class ProductTypeController extends Controller
 
         return redirect('/home/productType');
     }
+
+    public function edit($id)
+    {
+
+
+        $types = Product_types::where('id','=',$id)->first();
+        // dd($types);
+        // $products = Products::with("products_types")->find($id);
+
+
+        return view('admin/productType/edit',compact('types'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $item = Product_types::find($id);
+        // dd($item);
+        $request_data = $request->all();
+        // dd($request_data);
+        $item->update($request_data);
+
+        return redirect('/home/productType');
+    }
+
+
 
     // 刪除產品類型
     public function delete(Request $request, $id)

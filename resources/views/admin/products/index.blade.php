@@ -16,6 +16,7 @@
             <th>title</th>
             <th>content</th>
             <th>sort</th>
+            <th>types_id</th>
             <th></th>
 
         </tr>
@@ -31,6 +32,7 @@
                 <td>{{$item->title}}</td>
                 <td>{!! $item->content !!}</td>
                 <td>{{$item->sort}}</td>
+                <th>{{$item->products_types->types}}</th>
                 <td width="120px">
                     <a href="/home/products/edit/{{$item->id}}" class="btn btn-warning ">修改</a>
                     <button class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>

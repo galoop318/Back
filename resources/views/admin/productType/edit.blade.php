@@ -18,50 +18,20 @@
 
 <div class="container">
     <h1>編輯最新消息</h1>
-    <form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
+    <form method="POST" action="/home/productType/update/{{$types->id}}" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label for="img">現有主要圖片</label>
-            <img class="img-fluid" width="250" src="{{$news->img}}" alt="">
-        </div>
 
-        <div class="form-group">
-            <label for="title">重新上傳主要圖片</label>
-            <input type="file" class="form-control" id="img" name="img">
-        </div>
-        <hr>
-        <div class="row">
-            現有多張圖片組
-            @foreach ($news->news_imgs as $item)
-            <div class="col-2">
-                <div class="news_img_card" data-newsimgid="{{$item->id}}">
-                <button type="button" class="btn btn-danger" data-newsimgid="{{$item->id}}">Ｘ</button>
-                    <img class="img-fluid" width="250" src="{{$item->img_url}}" alt="">
-                    <input class="form-control" type="text" value="{{$item->sort}}"
-                        onchange="ajax_post_sort(this,{{$item->id}})">
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="form-group">
-            <label for="title">新增多張圖片組</label>
-            <input type="file" class="form-control" id="news_img" name="news_img[]" multiple>
-        </div>
         <hr>
         <div class="form-group">
-            <label for="title">Email address</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$news->title}}">
+            <label for="types">types</label>
+            <input type="text" class="form-control" id="types" name="types" value="{{$types->types}}">
         </div>
 
         <div class="form-group">
             <label for="sort">sort</label>
-            <input type="number" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
+            <input type="number" class="form-control" id="sort" name="sort" value="{{$types->sort}}">
         </div>
 
-        <div class="form-group">
-            <label for="content">Password</label>
-            <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$news->content}}</textarea>
-        </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

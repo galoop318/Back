@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use App\Products;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -25,11 +26,11 @@ class FrontController extends Controller
 
 
     public function products(){
-        $news_data = News::orderby('sort','desc')->get();
-        return view('front/products',compact('news_data'));
+        $Products_data = Products::orderby('sort','desc')->get();
+        return view('front/products',compact('Products_data'));
     }
 
-    public function products_detail($id){ 
+    public function products_detail($id){
 
         $news = News::find($id);
         // dd($item);

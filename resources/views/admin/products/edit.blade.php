@@ -17,12 +17,12 @@
 @section('content')
 
 <div class="container">
-    <h1>編輯最新消息</h1>
-    <form method="POST" action="/home/news/update/{{$news->id}}" enctype="multipart/form-data">
+    <h1>編輯產品</h1>
+    <form method="POST" action="/home/products/update/{{$products->id}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="img">現有主要圖片</label>
-            <img class="img-fluid" width="250" src="{{$news->img}}" alt="">
+            <img class="img-fluid" width="250" src="{{$products->img}}" alt="">
         </div>
 
         <div class="form-group">
@@ -30,7 +30,7 @@
             <input type="file" class="form-control" id="img" name="img">
         </div>
         <hr>
-        <div class="row">
+        {{-- <div class="row">
             現有多張圖片組
             @foreach ($news->news_imgs as $item)
             <div class="col-2">
@@ -46,21 +46,43 @@
         <div class="form-group">
             <label for="title">新增多張圖片組</label>
             <input type="file" class="form-control" id="news_img" name="news_img[]" multiple>
-        </div>
+        </div> --}}
         <hr>
+
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="types_id">
+                @foreach ($types as $item)
+
+                    @if($item->id == $products->types_id)
+                    <option value="{{$item->id}}" selected>
+                        {{$item->types}}
+                    </option>
+
+                    @else
+                    <option value="{{$item->id}}">
+                        {{$item->types}}
+                    </option>
+                    @endif
+
+                @endforeach
+
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="title">Email address</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$news->title}}">
+            <input type="text" class="form-control" id="title" name="title" value="{{$products->title}}">
         </div>
 
         <div class="form-group">
             <label for="sort">sort</label>
-            <input type="number" class="form-control" id="sort" name="sort" value="{{$news->sort}}">
+            <input type="number" class="form-control" id="sort" name="sort" value="{{$products->sort}}">
         </div>
 
         <div class="form-group">
             <label for="content">Password</label>
-            <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$news->content}}</textarea>
+            <textarea class="form-control" name="content" id="content" cols="30" rows="10">{{$products->content}}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

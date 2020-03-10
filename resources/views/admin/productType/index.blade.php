@@ -26,7 +26,7 @@
                 <td>{{$item->types}}</td>
                 <td>{{$item->sort}}</td>
                 <td width="120px">
-                    <a href="/home/news/edit/{{$item->id}}" class="btn btn-warning ">修改</a>
+                    <a href="/home/productType/edit/{{$item->id}}" class="btn btn-warning ">修改</a>
                     <button class="btn btn-danger" onclick="show_confirm({{$item->id}})">刪除</button>
                     <form id="delete-form-{{$item->id}}" action="/home/productType/delete/{{$item->id}}" method="POST" style="display: none;">
                         @csrf
