@@ -22,6 +22,9 @@ Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 Route::get('/products', 'FrontController@products');
 Route::get('/products/{id}', 'FrontController@products_detail');
 
+Route::get('/contactus', 'FrontController@contactus');
+
+
 Auth::routes();
 
 
@@ -62,7 +65,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home'],function(){
     Route::get('products', 'ProductController@index');
 
     Route::get('products/create', 'ProductController@create');
-    Route::post('products/store', 'ProductController@store'); 
+    Route::post('products/store', 'ProductController@store');
 
     Route::get('products/edit/{id}','ProductController@edit');
     Route::post('products/update/{id}','ProductController@update');

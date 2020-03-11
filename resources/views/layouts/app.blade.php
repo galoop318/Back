@@ -58,6 +58,10 @@
 
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/news">聯絡我們</a>
+                        </li>
+
 
 
                     </ul>

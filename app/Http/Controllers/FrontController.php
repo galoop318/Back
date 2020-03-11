@@ -36,4 +36,8 @@ class FrontController extends Controller
         // dd($item);
         return view('front/news_detail',compact('news'));
     }
+
+    public function contactus(){
+        return view('front/contactus');
+    }
 }
