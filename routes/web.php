@@ -24,6 +24,10 @@ Route::get('/products/{id}', 'FrontController@products_detail');
 
 Route::get('/contactus', 'FrontController@contactus');
 
+Route::get('/test_goods_detail', 'FrontController@test_goods_detail');//假的產品頁
+
+Route::get('/add_cart', 'FrontController@add_cart');
+Route::get('/total_cart', 'FrontController@total_cart');
 
 Auth::routes();
 
