@@ -22,12 +22,12 @@ Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 Route::get('/products', 'FrontController@products');
 Route::get('/products/{id}', 'FrontController@products_detail');
 
-Route::get('/contactus', 'FrontController@contactus');
+Route::get('/contactus', 'FrontController@contactus');//聯絡我們
 
 Route::get('/test_goods_detail', 'FrontController@test_goods_detail');//假的產品頁
 
 Route::get('/add_cart', 'FrontController@add_cart');
-Route::get('/total_cart', 'FrontController@total_cart');
+Route::get('/cart', 'FrontController@cart_total');
 
 Auth::routes();
 

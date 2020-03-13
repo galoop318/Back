@@ -1,41 +1,115 @@
 @extends('layouts/nav')
 
 @section('css')
-<style>
-    .product-Card {
-        width: 606px;
-        min-height: 500px;
-        box-sizing: border-box;
-        padding: 48px 48px 40px;
-        margin-bottom: 60px;
-        background: #fafafa;
-    }
+    <style>
+        .Cart {
+  max-width: 800px;
+  margin: 50px auto;
+}
 
-    .product-Card .btnfont {
-        padding: .375rem .5625rem;
-        width: 100%;
-        min-height: 1.875rem;
-        height: 100%;
-        font-size: .8125rem;
-        line-height: 1rem;
-        color: #757575;
-        text-align: center;
-        border-radius: .3125rem;
-        border: .0625rem solid #eee;
-        background-color: #fff;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        transition: opacity, border .2s linear;
-    }
+.Cart__header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  grid-gap: 2px;
+  margin-bottom: 2px;
+}
 
-    .product-Card .btnfont.active {
-        color: #424242;
-        border-color: #ff6700;
-        transition: opacity, border .2s linear;
-    }
-</style>
+.Cart__headerGrid {
+  text-align: center;
+  background: #f3f3f3;
+}
+
+.Cart__product {
+  display: grid;
+  grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
+  grid-gap: 2px;
+  margin-bottom: 2px;
+  height: 70px;
+}
+
+.Cart__productGrid {
+  padding: 5px;
+}
+
+.Cart__productImg {
+  background-image: url(https://fakeimg.pl/640x480/c0cfe8/?text=Img);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.Cart__productTitle {
+  overflow: hidden;
+  line-height: 25px;
+}
+
+.Cart__productPrice,
+.Cart__productQuantity,
+.Cart__productTotal,
+.Cart__productDel {
+  text-align: center;
+  line-height: 60px;
+}
+
+@media screen and (max-width: 820px) {
+  .Cart__header {
+    display: none;
+  }
+
+  .Cart__product {
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 1fr;
+    grid-template-areas:
+      "img title title title title title del"
+      "img price price quantity total total del";
+  }
+
+  .Cart__productImg {
+    grid-area: img;
+  }
+
+  .Cart__productTitle {
+    grid-area: title;
+  }
+
+  .Cart__productPrice,
+  .Cart__productQuantity,
+  .Cart__productTotal,
+  .Cart__productDel {
+    line-height: initial;
+  }
+
+  .Cart__productPrice {
+    grid-area: price;
+    text-align: right;
+  }
+
+  .Cart__productQuantity {
+    grid-area: quantity;
+    text-align: left;
+  }
+
+  .Cart__productQuantity::before {
+    content: "x";
+  }
+
+  .Cart__productTotal {
+    grid-area: total;
+    text-align: right;
+    color: red;
+  }
+
+  .Cart__productDel {
+    grid-area: del;
+    line-height: 60px;
+    background: #ffc0cb26;
+  }
+}
+
+    </style>
+
 @endsection
 
 
@@ -43,96 +117,39 @@
 
 <section class="features3 cid-rRF3umTBWU" id="features3-7" style="margin-top:80px">
 
-    <div class="container row">
+    <div class="container">
 
-
-        <div class="col-6"></div>
-
-        <div class="col-6">
-            <div class="product-Card">
-                <div class="goods_name">
-                    <h1>Redmi Note 8 Pro</h1>
-                    <span>6GB+64GB, 冰翡翠</span>
-                    <span>NT$6,599</span>
-
-                </div>
-                <div class="tips">
-                    icon雙倍該商品可享受雙倍積分
-                </div>
-                <div class="goods_capacitys">
-                    容量
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="goods_capacity btnfont" data-capacity="6GB+64GB">
-                                6GB+64GB
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="goods_capacity btnfont" data-capacity="6GB+128GB">
-                                6GB+128GB
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="goods_color">
-                    顏色
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="color btnfont" data-color="紅">
-                                紅
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="color btnfont" data-color="黃">
-                                黃
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="color btnfont" data-color="綠">
-                                綠
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="color btnfont" data-color="紫">
-                                紫
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form action="" method="POST">
-                    @csrf
-
-                    <div class="goods-qty">
-                        數量
-                        <a id="minus" href="#">-</a>
-                        <span id="value">0</span>
-                        <a id="plus" href="#">+</a>
-                    </div>
-                    <div class="goods-total">
-                        <div>
-                            <span>Redmi Note 8 Pro</span>
-                            <span>冰翡翠</span>
-                            <span>6GB+64GB</span> * <span>1</span>
-                            NT$6,599
-                        </div>
-                    </div>
-                    {{-- <input type="text" name="goods_name" value="Redmi Note 8 Pro"> --}}
-                    <input type="text" name="capacity" id="capacity">
-                    <input type="text" name="color" id="color" >
-                    <br>
-                    <br>
-                    <button>立即購買</button>
-
-
-                </form>
-
-
-
-
+        <div class="Cart">
+            <div class="Cart__header">
+              <div class="Cart__headerGrid">商品</div>
+              <div class="Cart__headerGrid">單價</div>
+              <div class="Cart__headerGrid">數量</div>
+              <div class="Cart__headerGrid">小計</div>
+              <div class="Cart__headerGrid">刪除</div>
             </div>
+            <div class="Cart__product">
+              <div class="Cart__productGrid Cart__productImg"></div>
+              <div class="Cart__productGrid Cart__productTitle">
+                DELL 戴爾 U3417W 34型 21:9 WQHD IPS曲面液晶螢幕《原廠三年保固》
+              </div>
+              <div class="Cart__productGrid Cart__productPrice">$32,500</div>
+              <div class="Cart__productGrid Cart__productQuantity">2</div>
+              <div class="Cart__productGrid Cart__productTotal">$65,000</div>
+              <div class="Cart__productGrid Cart__productDel">&times;</div>
+            </div>
+            <div class="Cart__product">
+              <div class="Cart__productGrid Cart__productImg"></div>
+              <div class="Cart__productGrid Cart__productTitle">
+                【日本原裝 AS 快眠枕】空運 日本 樂天寢具纇 10周銷售第一 枕邊人 睡眠
+                安眠 舒眠 人體工學 枕頭 【水貨碼頭】
+              </div>
+              <div class="Cart__productGrid Cart__productPrice">$2,680</div>
+              <div class="Cart__productGrid Cart__productQuantity">1</div>
+              <div class="Cart__productGrid Cart__productTotal">$2,680</div>
+              <div class="Cart__productGrid Cart__productDel">&times;</div>
+            </div>
+          </div>
 
-        </div>
 
 
     </div>
@@ -142,46 +159,7 @@
 @section('js')
 
 <script>
-    $('.product-Card .color').click(function(){
-        //change 長相
-        $('.product-Card .color').removeClass('active');
-        $(this).addClass('active');
 
-        //把顏色 放入 input的value中
-        //get data attr value
-        var color = $(this).attr("data-color");
-
-        // change input value
-        $('#color').val(color);
-
-    })
-
-    $('.product-Card .goods_capacity').click(function(){
-        //change 長相
-        $('.product-Card .goods_capacity').removeClass('active');
-        $(this).addClass('active');
-
-        //把容量 放入 input的value中
-
-        //get data attr value
-        var capacity = $(this).attr("data-capacity")
-        // change input value
-        $('#capacity').val(capacity);
-    })
-
-    $(function(){
-
-        var valueElement = $('#value');
-        function incrementValue(e){
-            valueElement.text(Math.max(parseInt(valueElement.text()) + e.data.increment, 0));
-            return false;
-        }
-
-        $('#plus').bind('click', {increment: 1}, incrementValue);
-
-        $('#minus').bind('click', {increment: -1}, incrementValue);
-
-    });
 </script>
 
 

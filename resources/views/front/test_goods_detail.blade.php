@@ -51,9 +51,9 @@
         <div class="col-6">
             <div class="product-Card">
                 <div class="goods_name">
-                    <h1>Redmi Note 8 Pro</h1>
-                    <span>6GB+64GB, 冰翡翠</span>
-                    <span>NT$6,599</span>
+                <div class="title">產品名稱</div>
+                    <div class="sub-title">6GB+64GB, 冰翡翠</div>
+                    <div class="price">NT$6,599</div>
 
                 </div>
                 <div class="tips">
@@ -63,7 +63,7 @@
                     容量
                     <div class="row">
                         <div class="col-4">
-                            <div class="goods_capacity btnfont" data-capacity="6GB+64GB">
+                            <div class="goods_capacity btnfont active" data-capacity="6GB+64GB">
                                 6GB+64GB
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                     顏色
                     <div class="row">
                         <div class="col-4">
-                            <div class="color btnfont" data-color="紅">
+                            <div class="color btnfont active" data-color="紅">
                                 紅
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                     </div>
                     {{-- <input type="text" name="goods_name" value="Redmi Note 8 Pro"> --}}
                     <input type="text" name="capacity" id="capacity">
-                    <input type="text" name="color" id="color" >
+                    <input type="text" name="color" id="color" value="紅">
                     <br>
                     <br>
                     <button>立即購買</button>
